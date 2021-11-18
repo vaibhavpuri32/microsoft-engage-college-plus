@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upcoming events</title>
+</head>
+<body>  
+
+    {% for event_item in events%}
+
+    <h1>{{event_item.name}}</h1>
+    <h2>{{event_item.start_time}}</h2>
+    <h2>{{event_item.end_time}}</h2>
+    <h3>{{event_item.description}}</h3>
+    {% endfor %} 
+
+    <div>
+        <a href="{% url 'new-event-form' %}" class="btn">New Form</a>
+      </div>
+
+
+    
+</body>
+</html>

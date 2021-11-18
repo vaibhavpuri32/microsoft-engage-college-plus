@@ -1,0 +1,27 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'teachers/styles/base.css' %}" />
+    <title>All Teachers</title>
+  </head>
+  <body>
+   
+      <ul>
+        {% for teacher_item in teachers%} 
+        <article>
+        <h1>Name : {{teacher_item.name}}</h1>
+        <h2>Email : {{teacher_item.email}}</h2>
+        <h2>Phone : {{teacher_item.phone}}</h2>
+        {% endfor%} 
+      </article>
+        <div>
+          <a href="{% url 'new-teacher-form' %}" class="btn">New Form</a>
+        </div>
+      </ul>
+    
+  </body>
+</html>
