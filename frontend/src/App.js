@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import AllEventsPage from "./components/events/allEvents";
+import NewEventForm from "./components/events/newEvent";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Layout from "./components/layout/layout";
+import SignUp from "./components/accounts/signup";    
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<AllEventsPage />} />
+          <Route path="/new" element={<NewEventForm />} /> 
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
-
 export default App;
