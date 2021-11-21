@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
+import { makePostRequest } from "../../utils";
 function NewEventForm(props) {
   const [name, setName] = useState("");
   const [start_time, setStartTime] = useState(new Date());
@@ -15,13 +16,7 @@ function NewEventForm(props) {
       description: description,
     };
 
-    fetch("http://127.0.0.1:8000/events/", {
-      method: "POST",
-      body: JSON.stringify(eventData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    makePostRequest("http://127.0.0.1:8000/events/", JSON.stringify(eventData))
   }
   return (
     <div>

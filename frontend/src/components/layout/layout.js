@@ -1,10 +1,13 @@
 import React from "react";
-import MainNavigation from "./mainNavigation"; 
- function Layout(props) {
+import MainNavigation from "./mainNavigation";
+import Container from "react-bootstrap/esm/Container";
+function Layout(props) {
   return (
     <div>
-      <MainNavigation />
-      <main>{props.children}</main>
+      <MainNavigation user={props.user} />
+      <Container>
+        <main>{props.children}</main>
+      </Container>
     </div>
   );
 }

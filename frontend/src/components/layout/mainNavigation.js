@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-function MainNavigation() {
+import { makeGetRequest } from "../../utils";
+function MainNavigation(props) {
+  
+  
+  
+  
+  
   return (
-    // <Navbar>
-    //   <ul><Link to="/">All Events</Link></ul>
-    //   <ul> <Link to="/new">Create a New Event</Link> </ul>
-    // </Navbar>
-
     <Navbar bg="primary" varient="light">
       <Container>
         <Navbar.Brand>Events Page</Navbar.Brand>
@@ -21,9 +22,15 @@ function MainNavigation() {
             </Nav.Link>
             <Nav.Link as={Link} to="/new">
               Create New Event
-            </Nav.Link> 
+            </Nav.Link>
             <Nav.Link as={Link} to="/signup">
               Signup
+            </Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              Login
+            </Nav.Link>
+            <Nav.Link as={Link} to="/me">
+              Profile
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

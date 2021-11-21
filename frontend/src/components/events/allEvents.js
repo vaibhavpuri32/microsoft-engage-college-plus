@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { makeGetRequest } from "../../utils";
+import CalenderPage from "../calender/calender";
 function AllEventsPage() {
   const [loadedevents, setLoadedEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/events/")
+    makeGetRequest("http://localhost:8000/events/")
       .then((response) => {
         return response.json();
       })
@@ -25,9 +27,12 @@ function AllEventsPage() {
       <h1>Upcoming Events</h1>
       <ul>
         {loadedevents.map((item, idx) => (
-          <li key={idx}>{item.name} </li>
-        ))}
-      </ul>
+          <li key={idx}>{item.name} </li> 
+                     
+        ))} 
+      </ul> 
+
+      <CalenderPage events={loadedevents} />
     </main>
   );
 }
