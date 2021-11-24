@@ -18,7 +18,6 @@ function SignUp() {
       password: password,
       is_teacher: is_teacher
     };
-    console.log(userData)
     fetch("http://127.0.0.1:8000/accounts/register", {
       method: "POST",
       body: JSON.stringify(userData),

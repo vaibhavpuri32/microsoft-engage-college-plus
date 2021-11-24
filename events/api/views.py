@@ -11,11 +11,13 @@ from .serializers import EventSerializer
 def events_list(request):
     if request.method == 'GET':
         events = Event.objects.all()
+        print(events)
         serializer = EventSerializer(events, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
+        data = JSONParser().parse(request) 
+        print(data)
         serializer = EventSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
@@ -37,6 +39,7 @@ def event_operations(request, pk):
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = EventSerializer(event, data=data)
+        print("Function Called")
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)

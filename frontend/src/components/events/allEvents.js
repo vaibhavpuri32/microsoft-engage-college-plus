@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { makeGetRequest } from "../../utils";
 import CalenderPage from "../calender/calender";
-function AllEventsPage() {
-  const [loadedevents, setLoadedEvents] = useState([]);
+import { useNavigate } from "react-router-dom";
+import EventItem from "./eventItem";
+function AllEventsPage(props) { 
 
+  console.log("All events "+ props.userId);
+  const history = useNavigate();
+  const [loadedevents, setLoadedEvents] = useState([]);
   useEffect(() => {
     makeGetRequest("http://localhost:8000/events/")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        const events = [];
-        for (const key in data) {
-          const event = {
-            id: key,
-            ...data[key],
-          };
-          events.push(event);
-        }
-        setLoadedEvents(events);
+        setLoadedEvents(data);
       });
   }, []);
 
@@ -27,12 +23,19 @@ function AllEventsPage() {
       <h1>Upcoming Events</h1>
       <ul>
         {loadedevents.map((item, idx) => (
-          <li key={idx}>{item.name} </li> 
-                     
-        ))} 
-      </ul> 
+          <li
+            key={idx}
+            // onClick={() => {
+            //   history("/edit/" + item.id + "/");
+            // }}
+          >
+            {/* {item.name} Created by id :{item.created_by} */}
+            <EventItem  event = {item} userId={props.userId}/>
+          </li>
+        ))}
+      </ul>
 
-      <CalenderPage events={loadedevents} />
+      <CalenderPage events={loadedevents} userId = {props.userId} />
     </main>
   );
 }
