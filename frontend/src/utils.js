@@ -31,6 +31,17 @@ export function makePutRequest(url, body) {
     headers,
     body,
   });
+} 
+
+export function makeDeleteRequest(url) {
+  let headers = { "Content-Type": "application/json" };
+  if (localStorage.token) {
+    headers = { ...headers, Authorization: `Token ${localStorage.token}` };
+  }
+  return fetch(url, {
+    method: "DELETE",
+    headers,
+  });
 }
 
 export function getdateinISO(start_time) {

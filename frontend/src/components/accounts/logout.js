@@ -1,13 +1,22 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router";
-export default function Logout() {
+import { Link } from "react-router-dom"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+export default function Logout(props) {
   function loginPage() {
-    localStorage.removeItem("token");
-    console.log("Logout Button Clicked")
+    props.resetUser();
+    localStorage.removeItem("token"); 
+    toast("Logged out Successfully")
+    console.log("Logout Button Clicked");
   }
+  useEffect(() => {
+    loginPage();
+  }, []);
   return (
     <div>
-      <h1 onClick={loginPage}>You Have been logged out, Click Here to Login</h1>
+      <h1>
+        You Have been logged out, <Link to="/login"> Click Here </Link> to Login
+      </h1>
     </div>
   );
 }

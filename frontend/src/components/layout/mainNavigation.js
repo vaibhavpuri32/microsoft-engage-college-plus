@@ -7,15 +7,18 @@ function MainNavigation(props) {
   return (
     <Navbar bg="primary" varient="light">
       <Container>
-        <Navbar.Brand>Events Page</Navbar.Brand>
+        <Navbar.Brand>College Plus</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">
               All Events
             </Nav.Link>
-            <Nav.Link as={Link} to="/new">
-              Create New Event
+            <Nav.Link as={Link} to="/new-event">
+              Create a new event
+            </Nav.Link> 
+            <Nav.Link as={Link} to="/new-assignment">
+              Create a new assignment
             </Nav.Link>
             <Nav.Link as={Link} to="/signup">
               Signup
@@ -25,7 +28,10 @@ function MainNavigation(props) {
             </Nav.Link>
             <Nav.Link as={Link} to="/me">
               Profile
-            </Nav.Link> 
+            </Nav.Link>  
+            <Nav.Link as={Link} to="/assignment">
+              Assignments
+            </Nav.Link>
             <Nav.Link as={Link} to="/logout">
               Logout
             </Nav.Link>

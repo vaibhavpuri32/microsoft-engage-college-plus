@@ -1,10 +1,13 @@
 import React from "react";
 import MainNavigation from "./mainNavigation";
 import Container from "react-bootstrap/esm/Container";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Layout(props) {
   return (
     <div>
       <MainNavigation user={props.user} />
+      <ToastContainer />
       <Container>
         <main>{props.children}</main>
       </Container>

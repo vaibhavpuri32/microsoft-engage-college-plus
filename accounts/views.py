@@ -33,7 +33,9 @@ def me(request):
                     "username": request.user.username,
                      "first_name": request.user.first_name,
                      "last_name": request.user.last_name,
-                     "email": request.user.email})
+                     "email": request.user.email, 
+                      "is_teacher": request.user.groups.filter(name="teachers").exists()
+                     })
     # dict_obj = model_to_dict(request.user)
     # serialized = json.dumps(dict_obj) 
-    # return serialized
+    # return serialized 

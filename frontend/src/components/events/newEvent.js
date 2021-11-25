@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { makePostRequest } from "../../utils";
-import {useNavigate} from "react-router-dom";
-function NewEventForm(props) { 
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
+function NewEventForm(props) {
   const history = useNavigate();
   const [name, setName] = useState("");
   const [start_time, setStartTime] = useState(new Date());
@@ -16,9 +17,13 @@ function NewEventForm(props) {
       start_time: start_time,
       end_time: end_time,
       description: description,
-      created_by: props.userId
+      created_by: props.userId,
     };
-    await makePostRequest("http://127.0.0.1:8000/events/", JSON.stringify(eventData))
+    await makePostRequest(
+      "http://127.0.0.1:8000/events/",
+      JSON.stringify(eventData)
+    );
+    toast.success("You have Created an event")
     history("/");
   }
   return (
@@ -26,6 +31,7 @@ function NewEventForm(props) {
       <h1>Add a new Event</h1>
       <form onSubmit={handleSubmit}>
         <div>
+          <label>Name: </label>
           <input
             type="text"
             onChange={(e) => setName(e.target.value)}
@@ -33,13 +39,17 @@ function NewEventForm(props) {
           />
         </div>
         <div>
+          <label>Start Time: </label>
           <DateTimePicker onChange={setStartTime} value={start_time} />
         </div>
         <div>
+          <label>End Time: </label>
           <DateTimePicker onChange={setEndTime} value={end_time} />
         </div>
         <div>
+          <label htmlFor="description">Description: </label>
           <input
+            requiredid="description"
             type="textArea"
             onChange={(e) => setDescription(e.target.value)}
             value={description}

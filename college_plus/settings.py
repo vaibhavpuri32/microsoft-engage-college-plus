@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'events',
-    'accounts'
+    'accounts',
+    'assignments'
 ]
 
 MIDDLEWARE = [

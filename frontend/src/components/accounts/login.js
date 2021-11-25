@@ -1,7 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import { makePostRequest } from "../../utils";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"; 
+import { ToastContainer, toast } from "react-toastify";
 function Login(props) {  
   const history = useNavigate() 
   const [username, setUsername] = useState("");
@@ -20,6 +21,7 @@ function Login(props) {
     const data = await responseData.json();
     localStorage.setItem("token", data["token"]);
     props.getUserInformation();
+    toast.success("Logged in Successfully");
     history("/");
   }
   return (
@@ -27,7 +29,7 @@ function Login(props) {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username" >USERNAME : </label>
+          <label htmlFor="username" >Username : </label>
           <input required id = "username"
             type="text" 
             onChange={(e) => setUsername(e.target.value)}
@@ -35,9 +37,9 @@ function Login(props) {
           />
         </div>
         <div> 
-        <label htmlFor="password"> PASSWORD : </label>
+        <label htmlFor="password"> Password : </label>
           <input required id = "password"
-            type="text"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
