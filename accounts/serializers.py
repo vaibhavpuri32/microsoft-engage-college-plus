@@ -29,3 +29,9 @@ class AccountCreationSerializer(serializers.ModelSerializer):
         
         # print(self.validated_data)
         return saved_user
+
+
+class UserSerializer(serializers.ModelSerializer): 
+    class Meta:
+        model = User
+        fields = '__all__'

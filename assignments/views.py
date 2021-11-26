@@ -11,13 +11,15 @@ from .models import Submission, Assignment
 
 
 class AssignmentView(ModelViewSet):
-    serializer_class = AssignmentSerializer 
+    serializer_class = AssignmentSerializer
     queryset = Assignment.objects.all()
 
 
 class SubmissionView(ModelViewSet):
-    serializer_class = SubmissionSerializer 
+    serializer_class = SubmissionSerializer
     queryset = Submission.objects.all()
-
-
-
+    def filter_submissions(request, assignment_id):
+        submissions = Submission.objects.all()
+        filtered_submissions = submissions.filter(assignment=assignment_id)
+        serializer = SubmissionSerializer(filtered_submissions, many = True)
+        return JsonResponse(serializer.data, safe=False)

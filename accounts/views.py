@@ -1,11 +1,13 @@
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.contrib.auth.models import User
 import rest_framework
 from rest_framework import response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.fields import JSONField
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from .serializers import AccountCreationSerializer
+from .serializers import AccountCreationSerializer, UserSerializer
 from rest_framework.permissions import AllowAny
 from django.forms.models import model_to_dict
 import json
@@ -39,3 +41,10 @@ def me(request):
     # dict_obj = model_to_dict(request.user)
     # serialized = json.dumps(dict_obj) 
     # return serialized 
+@api_view(['GET'])
+def getUserData(request, user_id):
+    user = User.objects.all() 
+    filtered_user = user.filter(id = user_id)[0] 
+    serializer = UserSerializer(filtered_user) 
+    return JsonResponse(serializer.data)
+

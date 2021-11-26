@@ -21,7 +21,8 @@ export default function AllAssignmentsPage(props) {
             key={idx}
             assignment={item}
             userId={props.userId}
-            setLoadedAssignments={setLoadedAssignments}
+            setLoadedAssignments={setLoadedAssignments} 
+            isTeacher = {props.isTeacher}
           />
         ))}
       </ul>

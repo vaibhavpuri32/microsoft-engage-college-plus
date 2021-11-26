@@ -15,10 +15,8 @@ import NewAssignment from "./components/assignments/newAssignment";
 import AllAssignmentsPage from "./components/assignments/allAssignments";
 import EditAssignmentPage from "./components/assignments/editAssignment";
 import NewSubmissionPage from "./components/submissions/newSubmission";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import AllSubmissionsPage from "./components/submissions/allSubmissions";
-
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [id, setId] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -67,7 +65,7 @@ function App() {
           />
           <Route
             path="/assignment"
-            element={<AllAssignmentsPage userId={id} />}
+            element={<AllAssignmentsPage userId={id} isTeacher={isTeacher}/>}
           />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/logout" element={<Logout resetUser={resetUser} />} />
@@ -99,6 +97,10 @@ function App() {
           <Route
             path="/new-submission/:id"
             element={<NewSubmissionPage userId={id} />}
+          /> 
+          <Route
+            path="/all-submissions/:id"
+            element={<AllSubmissionsPage userId={id} />}
           />
         </Routes>
       </Layout>

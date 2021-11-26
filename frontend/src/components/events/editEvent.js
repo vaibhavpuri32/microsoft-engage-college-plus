@@ -34,7 +34,7 @@ export default function EditEventPage(props) {
   }
   return (
     <div>
-      <h1>Add a new Event</h1>
+      <h1>Edit Event</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name: </label>

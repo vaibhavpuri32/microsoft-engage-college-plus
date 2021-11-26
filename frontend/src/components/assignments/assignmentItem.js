@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { makeDeleteRequest, makeGetRequest } from "../../utils";
+import NewSubmissionPage from "../submissions/newSubmission";
 export default function AssignmentItem(props) {
   const history = useNavigate();
   return (
@@ -9,7 +10,7 @@ export default function AssignmentItem(props) {
       <Card.Body>
         <Card.Title>{props.assignment.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          Deadline : {props.assignment.deadline} 
+          Deadline : {props.assignment.deadline}
         </Card.Subtitle>
         <Card.Text>Description - {props.assignment.description}</Card.Text>
         <Card.Text>Created by : {props.assignment.author}</Card.Text>
@@ -27,7 +28,8 @@ export default function AssignmentItem(props) {
           <button
             onClick={() => {
               makeDeleteRequest(
-                "http://127.0.0.1:8000/assignments/assignment/" + props.assignment.id
+                "http://127.0.0.1:8000/assignments/assignment/" +
+                  props.assignment.id
               );
               props.setLoadedAssignments((oldList) =>
                 oldList.filter((item) => item.id !== props.assignment.id)
@@ -35,6 +37,20 @@ export default function AssignmentItem(props) {
             }}
           >
             Delete
+          </button>
+        )}
+        {props.isTeacher == false && (
+          <button
+            onClick={() => history("/new-submission/" + props.assignment.id + "/")}
+          >
+            Submit
+          </button>
+        )} 
+        {props.userId === props.assignment.author && (
+          <button
+            onClick={() => history("/all-submissions/" + props.assignment.id + "/")}
+          >
+            View Submissions
           </button>
         )}
       </Card.Body>

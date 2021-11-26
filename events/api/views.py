@@ -11,7 +11,6 @@ from .serializers import EventSerializer
 def events_list(request):
     if request.method == 'GET':
         events = Event.objects.all()
-        print(events)
         serializer = EventSerializer(events, many=True)
         return JsonResponse(serializer.data, safe=False)
 

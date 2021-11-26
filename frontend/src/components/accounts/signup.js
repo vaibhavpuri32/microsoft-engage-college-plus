@@ -1,6 +1,9 @@
 import { useState,useRef } from "react";
-import React from "react";
-function SignUp() {
+import React from "react"; 
+import { ToastContainer, toast } from "react-toastify";
+import {useNavigate} from "react-router-dom";
+function SignUp() { 
+  const history = useNavigate();
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastTime] = useState("");
   const [email, setEmail] = useState("");
@@ -24,7 +27,9 @@ function SignUp() {
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    }); 
+    toast.success("Your Account has been created !"); 
+    history("/login");
   }
   return (
     <div>
