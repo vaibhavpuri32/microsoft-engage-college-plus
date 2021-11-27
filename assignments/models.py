@@ -25,7 +25,7 @@ class Submission(models.Model):
     assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.author} {self.assignment}'
+        return f'{self.author} {self.assignment}  {self.answer}'
 
 
 

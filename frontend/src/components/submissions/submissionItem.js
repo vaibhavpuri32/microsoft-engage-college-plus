@@ -9,13 +9,14 @@ export default function SubmissionItem(props) {
       "http://127.0.0.1:8000/accounts/get-user-data/" + props.submission.author
     );
     const data = await responseData.json();
-    console.log(data);
-    setName(data["first_name"] + "  " + data["last_name"]);
+    setName(data["first_name"] + "  " + data["last_name"]); 
+
   }, []);
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
+        <img src = {props.submission.answer}  />
       </Card.Body>
     </Card>
   );

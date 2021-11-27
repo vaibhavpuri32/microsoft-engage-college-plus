@@ -18,9 +18,10 @@ export default function AllSubmissionsPage(props) {
   }, []);
   return (
     <div>
-      <h1> The following Studnets have submitted the assignment :  </h1>
+      <h1> The following Students have submitted the assignment :  </h1>
       <ul>
-        {loadedsubmissions.map((item, idx) => (
+        {loadedsubmissions.map((item, idx) => ( 
+          console.log(item),
           <SubmissionItem key = {idx} submission ={item}/>
         ))}
       </ul>
