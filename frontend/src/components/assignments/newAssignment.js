@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { makePostRequest } from "../../utils";
+import { convertDateFormat, makePostRequest} from "../../utils";
 import { useNavigate } from "react-router";
 export default function NewAssignment(props) {
   const history = useNavigate();
@@ -14,7 +14,7 @@ export default function NewAssignment(props) {
     const assignmentData = {
       title: title,
       description: description,
-      deadline: deadline,
+      deadline: new Date(convertDateFormat(deadline)),
       author: props.userId,
     };
     await makePostRequest(

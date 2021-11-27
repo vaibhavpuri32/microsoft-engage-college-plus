@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { makeGetRequest, makePutRequest, getdateinISO } from "../../utils";
+import { makeGetRequest, makePutRequest, getdateinISO, convertDateFormat } from "../../utils";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 
 export default function EditAssignmentPage(props) {
   const history = useNavigate();
   const [title, setTitle] = useState("");
-  const [deadline, setDeadline] = useState("");
+  const [deadline, setDeadline] = useState(new Date());
   const [description, setDescription] = useState("");
   let { id } = useParams();
   useEffect(async () => {
     const response = await makeGetRequest(
-      "http://127.0.0.1:8000/assignments/assignment/" + id
+      "http://127.0.0.1:8000/assignments/assignment/" + id + "/"
     ).then((r) => r.json());
     setTitle(response["title"]);
     setDeadline(new Date(getdateinISO(response["deadline"])));
@@ -22,7 +22,7 @@ export default function EditAssignmentPage(props) {
     e.preventDefault();
     let author = props.userId;
     //console.log("deadline is : "+ deadline)
-    let assignment = { id, deadline, description, author };
+    let assignment = { id, title, deadline :  new Date(convertDateFormat(deadline)) , description, author };
     await makePutRequest(
       "http://127.0.0.1:8000/assignments/assignment/" + id + "/",
       JSON.stringify(assignment)

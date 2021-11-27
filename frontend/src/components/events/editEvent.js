@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { makeGetRequest, makePutRequest, getdateinISO } from "../../utils"; 
-import {toast} from "react-toastify";
+import {
+  makeGetRequest,
+  makePutRequest,
+  getdateinISO,
+  convertDateFormat,
+} from "../../utils";
+import { toast } from "react-toastify";
 // import  input from "react-bootstrap/esm/input";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 export default function EditEventPage(props) {
   const history = useNavigate();
   const [name, setName] = useState("");
-  const [start_time, setStartTime] = useState("");
-  const [end_time, setEndTime] = useState("");
+  const [start_time, setStartTime] = useState(new Date());
+  const [end_time, setEndTime] = useState(new Date());
   const [description, setDescription] = useState("");
   let { id } = useParams();
   useEffect(async () => {
@@ -24,12 +29,19 @@ export default function EditEventPage(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     let created_by = props.userId;
-    let event = { id, name, start_time, end_time, description, created_by };
+    let event = {
+      id,
+      name,
+      start_time: new Date(convertDateFormat(start_time)),
+      end_time: new Date(convertDateFormat(end_time)),
+      description,
+      created_by,
+    };
     await makePutRequest(
       "http://127.0.0.1:8000/events/" + id,
       JSON.stringify(event)
-    ); 
-    toast.success("You have edited the event")
+    );
+    toast.success("You have edited the event");
     history("/");
   }
   return (

@@ -29,7 +29,7 @@ export default function AssignmentItem(props) {
             onClick={() => {
               makeDeleteRequest(
                 "http://127.0.0.1:8000/assignments/assignment/" +
-                  props.assignment.id
+                  props.assignment.id + "/"
               );
               props.setLoadedAssignments((oldList) =>
                 oldList.filter((item) => item.id !== props.assignment.id)

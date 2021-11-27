@@ -52,3 +52,9 @@ export function getdateinISO(start_time) {
   const minute = start_time.substring(14, 16);
   return year + "-" + month + "-" + date + "T" + hour + ":" + minute;
 }
+
+
+export function convertDateFormat(date1) { 
+  const original_Date = new Date(date1 + 'Z')
+  return original_Date.toISOString(); 
+}

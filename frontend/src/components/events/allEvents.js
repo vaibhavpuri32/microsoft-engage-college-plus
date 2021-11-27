@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { makeGetRequest } from "../../utils";
 import CalenderPage from "../calender/calender";
 import { useNavigate } from "react-router-dom";
-import EventItem from "./eventItem";
+import EventItem from "./eventItem"; 
+
+
 function AllEventsPage(props) {
   const history = useNavigate();
   const [loadedevents, setLoadedEvents] = useState([]);

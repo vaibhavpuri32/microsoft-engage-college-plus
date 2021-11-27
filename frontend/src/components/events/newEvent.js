@@ -3,14 +3,8 @@ import DateTimePicker from "react-datetime-picker";
 import { makePostRequest } from "../../utils";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getdateinISO } from "../../utils";
-function convertTZ(date, tzString) {
-  return new Date(
-    (typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {
-      timeZone: tzString,
-    })
-  );
-}
+import { getdateinISO,convertDateFormat } from "../../utils";
+
 function NewEventForm(props) {
   const history = useNavigate();
   const [name, setName] = useState("");
@@ -21,28 +15,11 @@ function NewEventForm(props) {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    //let k1 = start_time.toISOString();
-    // 2012-04-20T10:10:30.000Z
-    //"2012/04/20 10:10:30 +0000"
-    //"2021/11/26 20:16:00 +0000"
-    // const year = k1.substring(0, 4);
-    // const month = k1.substring(5, 7);
-    // const date = k1.substring(8, 10);
-    // const hour = k1.substring(11, 13);
-    // const minute = k1.substring(14, 16);
-    // let start_time_final =
-    //   year + "/" + month + "/" + date + " " + hour + ":" + minute + ":00 +0000";
-    // console.log(start_time_final + " GAP ");
-    // console.log(
-    //   convertTZ(
-    //     start_time_final,
-    //     Intl.DateTimeFormat().resolvedOptions().timeZone
-    //   )
-    // );
+    let k1 = start_time.toISOString();
     const eventData = {
       name: name,
-      start_time: start_time,
-      end_time: end_time,
+      start_time: new Date(convertDateFormat(start_time)),
+      end_time: new Date(convertDateFormat(end_time)),
       description: description,
       created_by: props.userId,
     };

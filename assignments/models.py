@@ -4,7 +4,6 @@ import os
 
 
 def get_upload_path(instance, filename):
-
     return os.path.join("uploads",
         "assignment_%d" % instance.assignment.id, instance.author.username + "." + filename.split(".")[-1])
 

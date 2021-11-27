@@ -23,15 +23,15 @@ class AccountCreationSerializer(serializers.ModelSerializer):
         if(self.validated_data['is_teacher']):
             group = Group.objects.get(name='teachers')
             user.groups.add(group)
-        else :
+        else:
             group = Group.objects.get(name='students')
             user.groups.add(group)
-        
+
         # print(self.validated_data)
         return saved_user
 
 
-class UserSerializer(serializers.ModelSerializer): 
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
