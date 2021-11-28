@@ -20,14 +20,13 @@ export default function CalenderPage(props) {
       to:   convertDateFormat(d1),
       color: color[idx % 5],
     }; 
-    console.log(convertDateFormat(d))
     event_list = [...event_list, item];
 
     return event_list;
   });
   return (
     <Container>
-      <Calendar events={event_list} />
+      <Calendar color="grey" events={event_list} />
     </Container>
   );
 }

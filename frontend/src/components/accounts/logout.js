@@ -7,7 +7,6 @@ export default function Logout(props) {
     props.resetUser();
     localStorage.removeItem("token"); 
     toast("Logged out Successfully")
-    console.log("Logout Button Clicked");
   }
   useEffect(() => {
     loginPage();

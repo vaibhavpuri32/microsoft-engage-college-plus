@@ -9,7 +9,7 @@ function AllEventsPage(props) {
   const history = useNavigate();
   const [loadedevents, setLoadedEvents] = useState([]);
   useEffect(() => {
-    makeGetRequest("http://localhost:8000/events/")
+    await makeGetRequest("http://localhost:8000/events/")
       .then((response) => {
         return response.json();
       })
