@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { makeGetRequest } from "../../utils";
 import Card from "react-bootstrap/Card";
 export default function SubmissionItem(props) {
-  //console.log(props.submission);
   const [name, setName] = useState("");
   useEffect(async () => {
     const responseData = await makeGetRequest(
@@ -12,7 +11,16 @@ export default function SubmissionItem(props) {
     setName(data["first_name"] + "  " + data["last_name"]);
   }, []);
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card
+      style={{
+        width: "50rem",
+        padding: "5px",
+        borderColor: "black",
+        borderWidth: "4px",
+        marginBlock: "15px",
+        backgroundColor: "#D5ADCF",
+      }}
+    >
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <img height="400" width="600" src={props.submission.answer} />

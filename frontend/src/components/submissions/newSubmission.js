@@ -17,18 +17,6 @@ export default function NewSubmissionPage(props) {
     formData.append("answer", selectedFile);
     formData.append("author", props.userId);
     formData.append("assignment", id);
-    console.log(JSON.stringify(formData));
-
-    // const submissionData = {
-    //   author: props.userId,
-    //   assignment: id,
-    //   answer: selectedFile,
-    // };
-    // console.log(formData);
-    // await makePostRequest(
-    //   "http://127.0.0.1:8000/assignments/submission/",
-    //   formData
-    // );
 
     let headers = {};
     if (localStorage.token) {
@@ -40,7 +28,7 @@ export default function NewSubmissionPage(props) {
       body: formData,
     });  
     toast.success("You have Created a Submission for the assignment")
-    history("/assignment")
+    history("/assignments")
   }
   return (
     <div>

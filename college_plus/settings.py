@@ -135,8 +135,8 @@ CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': "%Y-%m-%d-%H-%M",
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication', 
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication', 
+        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication', 
 
     ],

@@ -27,6 +27,7 @@ class UserAssesment(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE) 
     test = models.ForeignKey(Test, on_delete=models.CASCADE) 
     answer_list = models.CharField(max_length=100) 
+    submitted = models.BooleanField(default=False)
 
     def total_score(self):
         question_list = Question.objects.filter(test = self.test.id).order_by("id") 

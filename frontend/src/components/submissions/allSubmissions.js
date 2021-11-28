@@ -21,7 +21,6 @@ export default function AllSubmissionsPage(props) {
       <h1> The following Students have submitted the assignment :  </h1>
       <ul>
         {loadedsubmissions.map((item, idx) => ( 
-          console.log(item),
           <SubmissionItem key = {idx} submission ={item}/>
         ))}
       </ul>

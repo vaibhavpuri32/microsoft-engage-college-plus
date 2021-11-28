@@ -6,7 +6,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.viewsets import ModelViewSet
 from .serializers import AssignmentSerializer, SubmissionSerializer
-from .models import Submission, Assignment
+from .models import Submission, Assignment 
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 

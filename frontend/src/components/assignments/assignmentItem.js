@@ -6,12 +6,21 @@ import NewSubmissionPage from "../submissions/newSubmission";
 export default function AssignmentItem(props) {
   const history = useNavigate();
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card
+      style={{
+        width: "50rem",
+        padding: "5px",
+        borderColor: "black",
+        borderWidth: "4px",
+        marginBlock: "15px",
+        backgroundColor: "#D5ADCF",
+      }}
+    >
       <Card.Body>
         <Card.Title>{props.assignment.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
+        <Card.Text>
           Deadline : {props.assignment.deadline}
-        </Card.Subtitle>
+        </Card.Text>
         <Card.Text>Description - {props.assignment.description}</Card.Text>
         <Card.Text>Created by : {props.assignment.author}</Card.Text>
         {props.userId === props.assignment.author && (
@@ -29,7 +38,8 @@ export default function AssignmentItem(props) {
             onClick={() => {
               makeDeleteRequest(
                 "http://127.0.0.1:8000/assignments/assignment/" +
-                  props.assignment.id + "/"
+                  props.assignment.id +
+                  "/"
               );
               props.setLoadedAssignments((oldList) =>
                 oldList.filter((item) => item.id !== props.assignment.id)
@@ -41,14 +51,18 @@ export default function AssignmentItem(props) {
         )}
         {props.isTeacher == false && (
           <button
-            onClick={() => history("/new-submission/" + props.assignment.id + "/")}
+            onClick={() =>
+              history("/new-submission/" + props.assignment.id + "/")
+            }
           >
             Submit
           </button>
-        )} 
+        )}
         {props.userId === props.assignment.author && (
           <button
-            onClick={() => history("/all-submissions/" + props.assignment.id + "/")}
+            onClick={() =>
+              history("/all-submissions/" + props.assignment.id + "/")
+            }
           >
             View Submissions
           </button>

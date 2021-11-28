@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import {
   makeGetRequest,
   makePutRequest,
@@ -47,7 +49,7 @@ export default function EditEventPage(props) {
   return (
     <div>
       <h1>Edit Event</h1>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <div>
           <label>Name: </label>
           <input
@@ -74,7 +76,60 @@ export default function EditEventPage(props) {
           />
         </div>
         <button>SUBMIT</button>
-      </form>
+      </form> */}
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" required id="name" type="text">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            on
+            placeholder="Enter Name"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+          />
+        </Form.Group>
+
+        <Form.Group
+          className="mb-3"
+          required
+          id="start-time"
+          value={start_time}
+          label="Start Time"
+        >
+          <DateTimePicker onChange={setStartTime} value={start_time} />
+          <Form.Label>Start Time</Form.Label>
+        </Form.Group>
+
+        <Form.Group
+          className="mb-3"
+          required
+          id="end-time"
+          value={end_time}
+          label="End Time"
+        >
+          <DateTimePicker onChange={setEndTime} value={end_time} />
+          <Form.Label>End Time</Form.Label>
+        </Form.Group>
+
+        <Form.Group
+          className="mb-3"
+          required
+          id="description"
+          type="text"
+          label="Description"
+        >
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            on
+            placeholder="Enter Description"
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }

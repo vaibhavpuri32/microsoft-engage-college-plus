@@ -16,7 +16,13 @@ import AllAssignmentsPage from "./components/assignments/allAssignments";
 import EditAssignmentPage from "./components/assignments/editAssignment";
 import NewSubmissionPage from "./components/submissions/newSubmission";
 import AllSubmissionsPage from "./components/submissions/allSubmissions";
+import NewQuestionPage from "./components/tests/newQuestion";
+import AllTestsPage from "./components/tests/allTests";
+import AllQuestionsPage from "./components/tests/allQuestions";
+import NewTestPage from "./components/tests/newTest";
 import "react-toastify/dist/ReactToastify.css";
+import AttemptTestPage from "./components/tests/attemptTest";
+import MainNavigation from "./components/layout/mainNavigation";
 function App() {
   const [id, setId] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -30,7 +36,6 @@ function App() {
       "http://127.0.0.1:8000/accounts/me/"
     );
     const data = await responseData.json();
-    console.log(data);
     setFirstName(data["first_name"]);
     setLastName(data["last_name"]);
     setUsername(data["username"]);
@@ -54,18 +59,34 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Layout username={username}>
+      <Layout username={username} userId = {id} isTeacher = {isTeacher} >
         <Routes>
           <Route path="/" element={<AllEventsPage userId={id} />} />
-          <Route path="/new-event" element={<NewEventForm userId={id} />} /> 
-          <Route path="/submissions" element={<AllSubmissionsPage userId={id} />} />
+          <Route path="/new-event" element={<NewEventForm userId={id} />} />
+          <Route
+            path="/submissions"
+            element={<AllSubmissionsPage userId={id} />}
+          /> 
+          <Route
+            path="/tests"
+            element={<AllTestsPage userId={id}  isTeacher={isTeacher}/>}
+          />
+          <Route path="/new-test" element={<NewTestPage userId={id} />} />
           <Route
             path="/new-assignment"
             element={<NewAssignment userId={id} />}
           />
           <Route
-            path="/assignment"
-            element={<AllAssignmentsPage userId={id} isTeacher={isTeacher}/>}
+            path="/add-question/:id"
+            element={<NewQuestionPage userId={id} />}
+          />
+          <Route
+            path="/assignments"
+            element={<AllAssignmentsPage userId={id} isTeacher={isTeacher} />}
+          /> 
+          <Route
+            path="/navbar"
+            element={<MainNavigation userId={id} username = {username} isTeacher={isTeacher} />}
           />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/logout" element={<Logout resetUser={resetUser} />} />
@@ -73,6 +94,7 @@ function App() {
             path="/login"
             element={<Login getUserInformation={getUserInformation} />}
           />
+
           <Route
             path="/me"
             element={
@@ -93,11 +115,15 @@ function App() {
           <Route
             path="/edit-assignment/:id"
             element={<EditAssignmentPage userId={id} />}
+          /> 
+          <Route
+            path="/attempt-test/:id"
+            element={<AttemptTestPage userId={id} />}
           />
           <Route
             path="/new-submission/:id"
             element={<NewSubmissionPage userId={id} />}
-          /> 
+          />
           <Route
             path="/all-submissions/:id"
             element={<AllSubmissionsPage userId={id} />}

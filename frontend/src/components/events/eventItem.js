@@ -5,12 +5,21 @@ import { makeDeleteRequest, makeGetRequest } from "../../utils";
 export default function EventItem(props) {
   const history = useNavigate();
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card
+      style={{
+        width: "50rem",
+        padding: "5px",
+        borderColor: "black",
+        borderWidth: "4px",
+        marginBlock: "15px",
+        backgroundColor: "#D5ADCF",
+      }}
+    >
       <Card.Body>
         <Card.Title>{props.event.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
+        <Card.Text>
           {props.event.start_time} to {props.event.end_time}
-        </Card.Subtitle>
+        </Card.Text>
         <Card.Text>Description - {props.event.description}</Card.Text>
         <Card.Text>Created by : {props.event.created_by}</Card.Text>
         {props.userId === props.event.created_by && (
