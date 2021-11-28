@@ -9,7 +9,9 @@ import {
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button"; 
+import Row from "react-bootstrap/Row"; 
+import Col from "react-bootstrap/Col";
 export default function EditAssignmentPage(props) {
   const history = useNavigate();
   const [title, setTitle] = useState("");
@@ -68,48 +70,53 @@ export default function EditAssignmentPage(props) {
         </div>
         <button>SUBMIT</button>
       </form> */}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" required id="title" type="text">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            on
-            placeholder="Enter Title"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-        </Form.Group>
+      <Row>
+        <Col md={6}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" required id="title" type="text">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                on
+                placeholder="Enter Title"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+              />
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="deadline"
-          value={deadline}
-          label="Deadline"
-        >
-          <DateTimePicker onChange={setDeadline} value={deadline} />
-          <Form.Label>Deadline</Form.Label>
-        </Form.Group>
+            <Form.Group
+              className="mb-3"
+              required 
+              className="w-100"
+              id="deadline"
+              value={deadline}
+              label="Deadline"
+            >
+              <DateTimePicker onChange={setDeadline} className="w-100" value={deadline} />
+              <Form.Label>Deadline</Form.Label>
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="description"
-          type="text"
-          label="Description"
-        >
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            on
-            placeholder="Enter Description"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </Form.Group>
+            <Form.Group
+              className="mb-3"
+              required
+              id="description"
+              type="text"
+              label="Description"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                on
+                placeholder="Enter Description"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+              />
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </div>
   );
 }

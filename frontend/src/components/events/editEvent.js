@@ -11,7 +11,9 @@ import {
 import { toast } from "react-toastify";
 // import  input from "react-bootstrap/esm/input";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router"; 
+import Row from "react-bootstrap/Row"; 
+import Col from "react-bootstrap/Col";
 export default function EditEventPage(props) {
   const history = useNavigate();
   const [name, setName] = useState("");
@@ -49,87 +51,72 @@ export default function EditEventPage(props) {
   return (
     <div>
       <h1>Edit Event</h1>
-      {/* <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name: </label>
-          <input
-            type="text"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-        </div>
-        <div>
-          <label>Start Time: </label>
-          <DateTimePicker onChange={setStartTime} value={start_time} />
-        </div>
-        <div>
-          <label>End Time: </label>
-          <DateTimePicker onChange={setEndTime} value={end_time} />
-        </div>
-        <div>
-          <label htmlFor="description">Description: </label>
-          <input
-            requiredid="description"
-            type="textArea"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </div>
-        <button>SUBMIT</button>
-      </form> */}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" required id="name" type="text">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            on
-            placeholder="Enter Name"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-        </Form.Group>
+      <Row>
+        <Col md={6}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" required id="name" type="text">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                on
+                placeholder="Enter Name"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+              />
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="start-time"
-          value={start_time}
-          label="Start Time"
-        >
-          <DateTimePicker onChange={setStartTime} value={start_time} />
-          <Form.Label>Start Time</Form.Label>
-        </Form.Group>
+            <Form.Group
+              className="mb-3"
+              required
+              id="start-time"
+              value={start_time}
+              label="Start Time"
+            >
+              {" "}
+              <Form.Label>Start Time</Form.Label> <br />
+              <DateTimePicker
+                className="w-100"
+                onChange={setStartTime}
+                value={start_time}
+              />
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="end-time"
-          value={end_time}
-          label="End Time"
-        >
-          <DateTimePicker onChange={setEndTime} value={end_time} />
-          <Form.Label>End Time</Form.Label>
-        </Form.Group>
+            <Form.Group
+              className="mb-3"
+              required
+              id="end-time"
+              value={end_time}
+              label="End Time"
+            >
+              <Form.Label>End Time</Form.Label> <br />
+              <DateTimePicker
+                className="w-100"
+                onChange={setEndTime}
+                value={end_time}
+              />
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="description"
-          type="text"
-          label="Description"
-        >
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            on
-            placeholder="Enter Description"
-            onChange={(e) => setDescription(e.target.value)}
-            value={description}
-          />
-        </Form.Group>
+            <Form.Group
+              className="mb-3"
+              required
+              id="description"
+              type="text"
+              label="Description"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                on
+                placeholder="Enter Description"
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+              />
+            </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </div>
   );
 }

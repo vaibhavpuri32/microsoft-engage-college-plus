@@ -12,11 +12,12 @@ export default function TestItem(props) {
         borderColor: "black",
         borderWidth: "4px",
         marginBlock: "15px",
-        backgroundColor: "#D5ADCF",
+        backgroundColor: "#D5ADCF", 
+        fontSize: "30px", 
       }}
     >
-      <Card.Body>
-        <Card.Title>{props.test.title}</Card.Title>
+      <Card.Body >
+        <Card.Title style = {{fontSize: "40px"}} >{props.test.title}</Card.Title>
         <Card.Text>Start Time : {props.test.end_time}</Card.Text>
         <Card.Text>End Time : {props.test.end_time}</Card.Text>
         <Card.Text>Created by : {props.test.created_by}</Card.Text>

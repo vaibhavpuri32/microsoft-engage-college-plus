@@ -3,8 +3,10 @@ import React from "react";
 import { makePostRequest } from "../../utils";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col"; 
+import Button from "react-bootstrap/Button"; 
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 function Login(props) {
   const history = useNavigate();
   const [username, setUsername] = useState("");
@@ -49,35 +51,39 @@ function Login(props) {
       //   <button>SUBMIT</button>
       // </form>   */}
 
-      <Form onSubmit={handleSubmit}>
-        <Form.Group
-          className="mb-3"
-          required
-          id="username"
-          type="text"
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
-          label="USERNAME"
-        >
-          <Form.Label>Username</Form.Label>
-          <Form.Control on placeholder="Enter username" />
-        </Form.Group>
+      <Row>
+        <Col md={6}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group
+              className="mb-3"
+              required
+              id="username"
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              label="USERNAME"
+            >
+              <Form.Label>Username</Form.Label>
+              <Form.Control on placeholder="Enter username" />
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        >
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+            <Form.Group
+              className="mb-3"
+              required
+              id="password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            >
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import { alignPropType } from "react-bootstrap/esm/types";
 import { useNavigate } from "react-router-dom";
 import { makeDeleteRequest, makeGetRequest } from "../../utils";
 export default function EventItem(props) {
@@ -13,10 +14,11 @@ export default function EventItem(props) {
         borderWidth: "4px",
         marginBlock: "15px",
         backgroundColor: "#D5ADCF",
+        fontSize: "30px",  
       }}
     >
       <Card.Body>
-        <Card.Title>{props.event.name}</Card.Title>
+        <Card.Title style={{fontSize: "40px"}}>{props.event.name}</Card.Title>
         <Card.Text>
           {props.event.start_time} to {props.event.end_time}
         </Card.Text>

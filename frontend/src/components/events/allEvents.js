@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { makeGetRequest } from "../../utils";
 import CalenderPage from "../calender/calender";
 import { useNavigate } from "react-router-dom";
-import EventItem from "./eventItem"; 
-
-
+import EventItem from "./eventItem";
+import Container from "react-bootstrap/esm/Container";
 function AllEventsPage(props) {
   const history = useNavigate();
   const [loadedevents, setLoadedEvents] = useState([]);
   useEffect(() => {
-    await makeGetRequest("http://localhost:8000/events/")
+    makeGetRequest("http://localhost:8000/events/")
       .then((response) => {
         return response.json();
       })
@@ -32,7 +31,14 @@ function AllEventsPage(props) {
         ))}
       </ul>
 
-      <CalenderPage events={loadedevents} userId={props.userId} />
+      <Container
+        style={{
+          width: "3000px",
+          backgroundColor: "#D3D3D3",
+        }}
+      >
+        <CalenderPage events={loadedevents} userId={props.userId} />
+      </Container>
     </main>
   );
 }

@@ -13,11 +13,12 @@ export default function AssignmentItem(props) {
         borderColor: "black",
         borderWidth: "4px",
         marginBlock: "15px",
-        backgroundColor: "#D5ADCF",
+        backgroundColor: "#D5ADCF", 
+        fontSize: "30px",  
       }}
     >
       <Card.Body>
-        <Card.Title>{props.assignment.title}</Card.Title>
+        <Card.Title style = {{fontSize: "40px"}}>{props.assignment.title}</Card.Title>
         <Card.Text>
           Deadline : {props.assignment.deadline}
         </Card.Text>

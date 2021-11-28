@@ -8,7 +8,7 @@ function convertDateFormat(date1) {
 }
 export default function CalenderPage(props) {
   let event_list = [];
-  let color = ["#000080", "#FF0000", "#6b8e23", "#ffff00", "#008080"];
+  let color = ["#5AB6D1", "#1F27A8", "#106334"];
 
   props.events.map((item, idx) => {
     let d = getdateinISO(item.start_time);
@@ -18,7 +18,7 @@ export default function CalenderPage(props) {
       title: item.name,
       from: convertDateFormat(d),
       to:   convertDateFormat(d1),
-      color: color[idx % 5],
+      color: color[idx % 3],
     }; 
     event_list = [...event_list, item];
 
@@ -26,7 +26,7 @@ export default function CalenderPage(props) {
   });
   return (
     <Container>
-      <Calendar color="grey" events={event_list} />
+      <Calendar events={event_list} />
     </Container>
   );
 }

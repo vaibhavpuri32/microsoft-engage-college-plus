@@ -7,9 +7,11 @@ import {
   convertDateFormat,
 } from "../../utils";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 export default function NewTestPage(props) {
   const history = useNavigate();
   const [title, setTitle] = useState("");
@@ -29,68 +31,60 @@ export default function NewTestPage(props) {
       JSON.stringify(testData)
     );
     toast.success("You have Created an test");
-    history("/tests")
+    history("/tests");
   }
 
   return (
-    <div>
-      <h1>Create a new Test</h1>
-      {/* <form onSubmit={handleSubmit}>
+    <Row>
+      <Col md={6}>
         <div>
-          <label>Title: </label>
-          <input
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-        </div>
-        <div>
-          <label>Start Time: </label>
-          <DateTimePicker onChange={setStartTime} value={start_time} />
-        </div>
-        <div>
-          <label>End Time: </label>
-          <DateTimePicker onChange={setEndTime} value={end_time} />
-        </div>
-        <button>SUBMIT</button>
-      </form> */}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" required id="name" type="text">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                on
+                placeholder="Enter Title"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+              />
+            </Form.Group>
 
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" required id="name" type="text">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            on
-            placeholder="Enter Title"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-        </Form.Group>
+            <Form.Group
+              className="mb-3"
+              required
+              id="start-time"
+              value={start_time}
+              label="Start Time"
+            >
+              {" "}
+              <Form.Label>Start Time</Form.Label> <br />
+              <DateTimePicker
+                className="w-100"
+                onChange={setStartTime}
+                value={start_time}
+              />
+            </Form.Group>
 
-        <Form.Group
-          className="mb-3"
-          required
-          id="start-time"
-          value={start_time}
-          label="Start Time"
-        >
-          <DateTimePicker onChange={setStartTime} value={start_time} />
-          <Form.Label>Start Time</Form.Label>
-        </Form.Group>
-
-        <Form.Group
-          className="mb-3"
-          required
-          id="end-time"
-          value={end_time}
-          label="End Time"
-        >
-          <DateTimePicker onChange={setEndTime} value={end_time} />
-          <Form.Label>End Time</Form.Label>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </div>
+            <Form.Group
+              className="mb-3"
+              required
+              id="end-time"
+              value={end_time}
+              label="End Time"
+            >
+              <Form.Label>End Time</Form.Label> <br />
+              <DateTimePicker 
+                className="w-100"
+                onChange={setEndTime}
+                value={end_time}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
+      </Col>
+    </Row>
   );
 }
