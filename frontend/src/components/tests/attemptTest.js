@@ -56,7 +56,7 @@ export default function AttemptTestPage(props) {
     setTestTaken(true);
   }
   if (loading) {
-    return "loading ...";
+    return "Loading ...";
   }
   if (test_taken) {
     return <h1>You have completed the test your score is {score} .</h1>;

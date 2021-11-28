@@ -22,11 +22,13 @@ function MainNavigation(props) {
                 Assignments
               </Nav.Link>
             )}
-            {props.isTeacher && (
+
+            {props.userId != "" && (
               <Nav.Link as={Link} to="/tests">
                 Tests
               </Nav.Link>
             )}
+
             {props.userId != "" && (
               <Nav.Link as={Link} to="/new-event">
                 Create a New Event
